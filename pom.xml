@@ -1,0 +1,40 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.github.gpicavet</groupId>
+	<artifactId>react-portlet</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<build>
+		<finalName>react-portlet</finalName>
+		<plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+						<phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>webpack</executable>
+          <arguments>
+            <argument>-p</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>
