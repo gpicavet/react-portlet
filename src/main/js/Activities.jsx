@@ -19,20 +19,21 @@ class Activities extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     var list = this.state.activities.map( (act) => {
-      return <div key={act.id} style={{"padding-bottom":"20px"}}>
-              <div style={{"border":"1px solid #ccc", "border-radius": "3px"}}>
-                <div style={{"border-bottom":"1px solid #ccc"}}>
+      var html = {__html:act.title};
+      return <div key={act.id} className="item-container">
+              <div className="item">
+                <div className="header">
                   <h2>{act.posterIdentity.profile.fullName}</h2>
                   <date>{new Date(act.postedTime).toString()}</date>
                 </div>
-                <div dangerouslySetInnerHTML={{__html:act.title}}/>
+                <div dangerouslySetInnerHTML={html}/>
               </div>
-             </div>;
+             </div>
     });
-    return <div style={{width:"50%"}}>{list}</div>;
+    return <div>{list}</div>;
   }
+  
 }
 
 ReactDOM.render(<Activities/>, document.getElementById('app'));

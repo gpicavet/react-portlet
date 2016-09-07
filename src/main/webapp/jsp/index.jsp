@@ -1,5 +1,4 @@
 <div class='react-portlet'>
-<h2>The React Portlet</h2>
-<p>You've clicked <span id="result">0</span> times.</p>
-<button>Click me</button>
+  <h2>The React Portlet</h2>
+  <div id="app"></div>
 </div>
