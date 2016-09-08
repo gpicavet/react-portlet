@@ -4,6 +4,16 @@
 	<artifactId>react-portlet</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+
+	<profiles>
+	    <profile>
+	      <id>production</id>
+	      <properties>
+	        <webpack.args>-p</webpack.args>
+	      </properties>
+	    </profile>
+	  </profiles>
+
 	<build>
 		<finalName>react-portlet</finalName>
 		<plugins>
@@ -22,7 +32,7 @@
         <configuration>
           <executable>webpack</executable>
           <arguments>
-            <argument>-p</argument>
+            <argument>${webpack.args}</argument>
           </arguments>
         </configuration>
       </plugin>

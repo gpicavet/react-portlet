@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-module.exports = {
+var wpconfig = {
   devtool : 'cheap-module-source-map',
   entry: './src/main/js/index.js',
   output: { path: path.join(__dirname, 'target/react-portlet/js'),
@@ -34,3 +34,5 @@ module.exports = {
   }*/
 
 };
+
+module.exports = wpconfig;

@@ -1,6 +1,6 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
-var port       = 8080;  			      // set our port
+var port       = 3000;  			      // set our port
 
 // REGISTER STATIC FILES -------------------------------
 app.use(express.static(__dirname+"/target/static/"));
@@ -18,7 +18,7 @@ router.get('/social/v1-alpha3/portal/activity_stream/feedByTimestamp.json', func
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
-app.use('/rest/private/api', router);
+app.use('/rest/api', router);
 
 // START THE SERVER
 // =============================================================================

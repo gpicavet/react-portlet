@@ -1,1 +1,1 @@
-import Hello from './Activities.jsx';
+import Activities from './Activities.jsx';

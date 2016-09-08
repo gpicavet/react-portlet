@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Activity} from './Activity.jsx';
 
 class Activities extends React.Component {
 
@@ -9,31 +10,23 @@ class Activities extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/rest/private/api/social/v1-alpha3/portal/activity_stream/feedByTimestamp.json?limit=5&sinceTime=12345&number_of_comments=5&number_of_likes=5").then(
-      (res) => {
+    fetch("/rest/api/social/v1-alpha3/portal/activity_stream/feedByTimestamp.json?limit=5&number_of_comments=5&number_of_likes=5",
+      {credentials: 'include'})
+    .then((res) => {
         return res.json();
-      }
-    ).then((json) => {
+      })
+    .then((json) => {
        this.setState(json);
     })
   }
 
   render() {
     var list = this.state.activities.map( (act) => {
-      var html = {__html:act.title};
-      return <div key={act.id} className="item-container">
-              <div className="item">
-                <div className="header">
-                  <h2>{act.posterIdentity.profile.fullName}</h2>
-                  <date>{new Date(act.postedTime).toString()}</date>
-                </div>
-                <div dangerouslySetInnerHTML={html}/>
-              </div>
-             </div>
+      return <Activity key={act.id} {...act} />
     });
-    return <div>{list}</div>;
+    return <ul>{list}</ul>;
   }
-  
+
 }
 
 ReactDOM.render(<Activities/>, document.getElementById('app'));
