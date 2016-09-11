@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "mkdir -p target/static & cp -R src/static/* target/static & cp -R src/main/webapp/css target/static",
-    "start": "webpack --watch & node server.js"
+    "copy": "mkdir -p target/static & cp -R src/static/* target/static & cp -R src/main/webapp/css target/static",
+    "release-debug": "export NODE_ENV= & webpack",
+    "release": "export NODE_ENV=production & webpack -p",
+    "start": "npm run copy & webpack --watch & node server.js"
   },
   "author": "",
   "license": "ISC",

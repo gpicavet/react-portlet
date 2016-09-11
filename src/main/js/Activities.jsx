@@ -10,7 +10,7 @@ class Activities extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/rest/api/social/v1-alpha3/portal/activity_stream/feedByTimestamp.json?limit=5&number_of_comments=5&number_of_likes=5",
+    fetch("/rest/v1/social/activities?limit=10&expand=identity",
       {credentials: 'include'})
     .then((res) => {
         return res.json();

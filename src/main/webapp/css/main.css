@@ -1,31 +1,40 @@
 .container ul { list-style-type: none; }
 
 .container ul li {
-  padding-bottom:20px
-}
+  background-color: #f5f5f5;
 
-.container ul li {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  padding : 20px;
+  margin-bottom:20px;
+
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
+
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+}
+
+.container ul li:hover {
+  .BoxShadowHelper(3);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .container ul li img {
-  width: 100px;
-	height: 100px;
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
+  width: 80px;
+	border-radius: 40px;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
 	filter: alpha(opacity=0);
-
-    -webkit-flex: 1 10%;
-    flex: 1 10%;
 }
 
 .container ul li .block {
-    -webkit-flex: 1 90%;
-    flex: 1 90%;
+  min-width:50%
 }
 
 .container ul li .header {

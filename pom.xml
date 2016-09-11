@@ -4,12 +4,15 @@
 	<artifactId>react-portlet</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
+	<properties>
+		<webpack.release>release-debug</webpack.release>
+	</properties>
 
 	<profiles>
 	    <profile>
 	      <id>production</id>
 	      <properties>
-	        <webpack.args>-p</webpack.args>
+					<webpack.release>release</webpack.release>
 	      </properties>
 	    </profile>
 	  </profiles>
@@ -17,27 +20,43 @@
 	<build>
 		<finalName>react-portlet</finalName>
 		<plugins>
-      <plugin>
+			<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.5.0</version>
         <executions>
           <execution>
+						<id>npm install</id>
 						<phase>generate-resources</phase>
             <goals>
               <goal>exec</goal>
             </goals>
+						<configuration>
+		          <executable>npm</executable>
+		          <arguments>
+		            <argument>install</argument>
+		          </arguments>
+		        </configuration>
+          </execution>
+					<execution>
+						<id>npm release</id>
+						<phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>${webpack.release}</argument>
+							</arguments>
+						</configuration>
           </execution>
         </executions>
-        <configuration>
-          <executable>webpack</executable>
-          <arguments>
-            <argument>${webpack.args}</argument>
-          </arguments>
-        </configuration>
       </plugin>
     </plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.portlet</groupId>
