@@ -8,17 +8,17 @@ export class Activity extends React.Component {
   }
 
   render() {
-      var html = {__html:this.props.title};
+      var titleHtml = {__html:this.props.title};
       return (
           <li>
-              <img src={this.props.identity.profile.avatar} />
+              <img src={this.props.identity.profile.avatar===null ? "/eXoSkin/skin/images/system/UserAvtDefault.png":this.props.identity.profile.avatar} />
               <div className="block">
                 <div className="header">
-                  <strong>{this.props.identity.profile.fullName}</strong>
+                  <strong>{this.props.identity.profile.fullname}</strong>
                   <br/>
                   Posted : <span>{moment(this.props.createDate).fromNow()}</span>
                 </div>
-                <div dangerouslySetInnerHTML={html}/>
+                <div dangerouslySetInnerHTML={titleHtml}/>
               </div>
              </li>);
   }

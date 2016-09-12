@@ -18,13 +18,6 @@
   transition: all 250ms;
 }
 
-.container ul li:hover {
-  .BoxShadowHelper(3);
-  -webkit-transform: translateY(-5px);
-  -moz-transform: translateY(-5px);
-  transform: translateY(-5px);
-}
-
 .container ul li img {
   width: 80px;
 	border-radius: 40px;
