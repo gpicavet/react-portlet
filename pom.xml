@@ -5,6 +5,7 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<properties>
+		<npm>npm</npm>
 		<webpack.release>release-debug</webpack.release>
 	</properties>
 
@@ -12,10 +13,20 @@
 	    <profile>
 	      <id>production</id>
 	      <properties>
-					<webpack.release>release</webpack.release>
+			<webpack.release>release</webpack.release>
 	      </properties>
 	    </profile>
-	  </profiles>
+	    <profile>
+			<activation>
+			  <os>
+				<family>Windows</family>
+			  </os>
+			</activation>
+	      <properties>
+			<npm>npm.cmd</npm>
+	      </properties>
+	    </profile>
+    </profiles>
 
 	<build>
 		<finalName>react-portlet</finalName>
@@ -26,31 +37,51 @@
         <version>1.5.0</version>
         <executions>
           <execution>
-						<id>npm install</id>
-						<phase>generate-resources</phase>
+			<id>npm install</id>
+			<phase>generate-resources</phase>
             <goals>
               <goal>exec</goal>
             </goals>
-						<configuration>
-		          <executable>npm</executable>
-		          <arguments>
-		            <argument>install</argument>
-		          </arguments>
-		        </configuration>
+			<configuration>
+			  <executable>${npm}</executable>
+			  <arguments>
+				<argument>install</argument>
+			  </arguments>
+			</configuration>
+  	    </execution>
+		<execution>
+			<id>npm release</id>
+			<phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+			<configuration>
+				<executable>${npm}</executable>
+				<arguments>
+					<argument>run</argument>
+					<argument>${webpack.release}</argument>
+				</arguments>
+			</configuration>
           </execution>
-					<execution>
-						<id>npm release</id>
-						<phase>generate-resources</phase>
+        </executions>
+      </plugin>
+	  
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>package-extension</id>
+            <phase>package</phase>
             <goals>
-              <goal>exec</goal>
+              <goal>single</goal>
             </goals>
-						<configuration>
-							<executable>npm</executable>
-							<arguments>
-								<argument>run</argument>
-								<argument>${webpack.release}</argument>
-							</arguments>
-						</configuration>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assemblies/addon-packaging.xml</descriptor>
+              </descriptors>
+            </configuration>
           </execution>
         </executions>
       </plugin>

@@ -41,12 +41,7 @@ var wpconfig = {
       minChunks: Infinity
     })
   ]
-  /*
-  externals: {
-      "react": "React",
-      "react-dom": "ReactDOM"
-  }
-*/
+
 };
 
 module.exports = wpconfig;
