@@ -4,8 +4,11 @@ var webpack = require('webpack');
 var wpconfig = {
   devtool : 'cheap-module-source-map',
   entry: './src/main/js/index.js',
-  output: { path: path.join(__dirname, 'target/react-portlet/js'),
-	    filename: 'bundle.js'},
+  output: { 
+	path: path.join(__dirname, 'target/react-portlet/js'),
+	filename: 'bundle.js',
+	library: 'Main',
+	libraryTarget: 'umd'},
 
   module: {
     loaders: [
@@ -19,12 +22,19 @@ var wpconfig = {
       }
     ]
   },
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ]
 /*
   externals: {
       "react": "React",
       "react-dom": "ReactDOM"
-  }
-*/
+  }*/
+
 };
 
 module.exports = wpconfig;
