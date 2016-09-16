@@ -12,10 +12,6 @@
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-
-  -webkit-transition: all 250ms;
-  -moz-transition: all 250ms;
-  transition: all 250ms;
 }
 
 .container ul li img {

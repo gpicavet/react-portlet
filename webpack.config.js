@@ -2,9 +2,18 @@ var path = require('path');
 var webpack = require('webpack');
 
 var wpconfig = {
-  devtool : 'cheap-module-source-map',
-  entry: './src/main/js/index.js',
-  output: { path: path.join(__dirname, 'target/react-portlet/js'),
+  devtool : 'source-map',
+  entry: {
+    bundle:'./src/main/js/index.js',
+    'vendor-bundle': [
+      'react',
+      'react-dom',
+      'moment'
+    ]
+  },
+
+  output: {
+      path: path.join(__dirname, 'target/react-portlet/js'),
 	    filename: 'bundle.js'},
 
   module: {
@@ -19,7 +28,20 @@ var wpconfig = {
       }
     ]
   },
-/*
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor-bundle',
+      filename: 'vendor-bundle.js',
+      minChunks: Infinity
+    })
+  ]
+  /*
   externals: {
       "react": "React",
       "react-dom": "ReactDOM"

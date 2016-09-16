@@ -16,7 +16,7 @@ export class Activity extends React.Component {
                 <div className="header">
                   <strong>{this.props.identity.profile.fullname}</strong>
                   <br/>
-                  Posted : <span>{moment(this.props.createDate).fromNow()}</span>
+                  Posted : <span>{moment(new Date(this.props.createDate)).fromNow()}</span>
                 </div>
                 <div dangerouslySetInnerHTML={titleHtml}/>
               </div>
