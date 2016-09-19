@@ -10,7 +10,7 @@ class Activities extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/rest/v1/social/activities?limit=10&expand=identity",
+    fetch("/rest/v1/social/activities?limit="+this.props.limit+"&expand=identity",
       {credentials: 'include'})
     .then((res) => {
         return res.json();
@@ -29,4 +29,4 @@ class Activities extends React.Component {
 
 }
 
-ReactDOM.render(<Activities/>, document.getElementById('app'));
+ReactDOM.render(<Activities limit="10"/>, document.getElementById('app'));

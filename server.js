@@ -26,4 +26,6 @@ app.use('/rest', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
+app.listen(port, function () {
+  console.log('App listening on port '+port+' !');
+});
