@@ -3,7 +3,15 @@
 ```
 npm install
 ```
-* build and start server in watch mode
+* build
+```
+npm run release
+```
+* build in watch mode (rebuild on *.js(x) change)
+```
+npm run watch
+```
+* start express server
 ```
 npm start
 ```
@@ -12,7 +20,7 @@ And go to http://localhost:3000/
 
 
 # Portlet mode
-* build
+* build (portlet and npm)
 ```
 mvn clean install
 ```
