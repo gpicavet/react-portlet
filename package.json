@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copy": "cp -R src/static/* target/static && cp -R src/main/webapp/css target/static",
+    "copy": "mkdir -p target/static && cp -R src/static/* target/static && cp -R src/main/webapp/css target/static",
     "release-debug": "export NODE_ENV= && webpack",
     "release": "export NODE_ENV=production && webpack -p",
     "watch": "npm run copy && node node_modules/webpack/bin/webpack.js --progress --colors --watch -d",
